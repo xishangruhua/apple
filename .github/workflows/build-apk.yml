@@ -24,7 +24,7 @@ jobs:
           rm -rf /tmp/min2phase
           git clone --depth 1 https://github.com/cs0x7f/min2phase.git /tmp/min2phase
           for f in CoordCube.java CubieCube.java Search.java Tools.java Util.java; do
-            find /tmp/min2phase -name "$f" -exec cp {} app/src/main/java/cs/min2phase/ \;
+            find /tmp/min2phase -name "$f" -exec cp {} app/src/main/java/cs/min2phase/ \\;
           done
           ls -lh app/src/main/java/cs/min2phase/
 
