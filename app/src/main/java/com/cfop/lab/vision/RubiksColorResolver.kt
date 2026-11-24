@@ -4,7 +4,7 @@ import kotlin.math.*
 
 object RubiksColorResolver {
 
-    val FACES = charArrayOf('U', 'R', 'F', 'D', 'L', 'B')
+    val FACES = listOf('U', 'R', 'F', 'D', 'L', 'B')
     private val CENTER_INDEX = intArrayOf(4, 13, 22, 31, 40, 49)
 
     private val PRIOR_LAB = mapOf(

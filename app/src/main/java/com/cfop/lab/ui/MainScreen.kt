@@ -1172,18 +1172,18 @@ private fun IsometricAutoScannerScreen(
                     onClick = {
                         if (resolvedFaces.size < 6) {
                             statusText = "请先完成 2 步三面连扫（当前已采 ${resolvedFaces.size}/6 面）"
-                            return@Button
-                        }
-                        scope.launch(Dispatchers.Default) {
-                            val state = CharArray(54)
-                            for ((k, off) in FACE_OFFSET) {
-                                val arr = resolvedFaces[k] ?: CharArray(9) { k }
-                                for (i in 0 until 9) state[off + i] = arr[i]
-                            }
-                            val res = CubeSolverBridge.solve(String(state))
-                            withContext(Dispatchers.Main) {
-                                if (res.ok) onSolved(res.moves)
-                                else statusText = res.error
+                        } else {
+                            scope.launch(Dispatchers.Default) {
+                                val state = CharArray(54)
+                                for ((k, off) in FACE_OFFSET) {
+                                    val arr = resolvedFaces[k] ?: CharArray(9) { k }
+                                    for (i in 0 until 9) state[off + i] = arr[i]
+                                }
+                                val res = CubeSolverBridge.solve(String(state))
+                                withContext(Dispatchers.Main) {
+                                    if (res.ok) onSolved(res.moves)
+                                    else statusText = res.error
+                                }
                             }
                         }
                     },

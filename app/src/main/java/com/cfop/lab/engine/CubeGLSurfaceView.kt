@@ -6,6 +6,7 @@ import android.opengl.GLSurfaceView
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
+import android.opengl.EGL14
 import javax.microedition.khronos.egl.EGL10
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.egl.EGLDisplay
@@ -82,7 +83,7 @@ class CubeGLSurfaceView(
             val msaaAttribs = intArrayOf(
                 EGL10.EGL_RED_SIZE, 8, EGL10.EGL_GREEN_SIZE, 8, EGL10.EGL_BLUE_SIZE, 8,
                 EGL10.EGL_DEPTH_SIZE, 16,
-                EGL10.EGL_RENDERABLE_TYPE, 4,
+                EGL14.EGL_RENDERABLE_TYPE, 4,
                 EGL10.EGL_SAMPLE_BUFFERS, 1, EGL10.EGL_SAMPLES, 4,
                 EGL10.EGL_NONE
             )
@@ -93,7 +94,7 @@ class CubeGLSurfaceView(
             }
             val fallback = intArrayOf(
                 EGL10.EGL_RED_SIZE, 8, EGL10.EGL_GREEN_SIZE, 8, EGL10.EGL_BLUE_SIZE, 8,
-                EGL10.EGL_DEPTH_SIZE, 16, EGL10.EGL_RENDERABLE_TYPE, 4, EGL10.EGL_NONE
+                EGL10.EGL_DEPTH_SIZE, 16, EGL14.EGL_RENDERABLE_TYPE, 4, EGL10.EGL_NONE
             )
             egl.eglChooseConfig(display, fallback, configs, 1, num)
             return configs[0]!!

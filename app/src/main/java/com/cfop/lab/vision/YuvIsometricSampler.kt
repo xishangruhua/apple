@@ -97,8 +97,9 @@ object YuvIsometricSampler {
             }
             val cx = sx.coerceIn(0, w - 1)
             val cy = sy.coerceIn(0, h - 1)
-            val yVal = (yBuf.get(cy * yRowStride + cx * yPixStride).toInt() and 0xFF)
-            val uvIdx = (cy / 2) * uvRowStride + (cx / 2) * uvPixStride
+            val yIdx = (cy * yRowStride + cx * yPixStride).coerceIn(0, yBuf.limit() - 1)
+            val yVal = (yBuf.get(yIdx).toInt() and 0xFF)
+            val uvIdx = ((cy / 2) * uvRowStride + (cx / 2) * uvPixStride).coerceIn(0, min(uBuf.limit(), vBuf.limit()) - 1)
             val uVal = (uBuf.get(uvIdx).toInt() and 0xFF) - 128
             val vVal = (vBuf.get(uvIdx).toInt() and 0xFF) - 128
 
