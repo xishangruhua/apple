@@ -1,4 +1,4 @@
-name: Build Pure Native Android APK
+name: Build CFOP Pure Native APK v4
 
 on:
   push:
@@ -39,14 +39,14 @@ jobs:
             yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           fi
 
-      - name: Build Pure Native Debug APK
+      - name: Build Debug APK
         run: gradle assembleDebug --no-daemon --stacktrace
 
-      - name: Verify APK output
+      - name: Verify APK Size
         run: ls -lh app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: CFOP-PureNative-v3-APK
+          name: CFOP-v4-UltraLight-APK
           path: app/build/outputs/apk/debug/app-debug.apk
