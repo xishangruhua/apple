@@ -12,8 +12,8 @@ android {
         applicationId = "com.cfop.lab"
         minSdk = 26
         targetSdk = 35
-        versionCode = 3
-        versionName = "3.0.0-native"
+        versionCode = 4
+        versionName = "4.0.0"
 
         ndk {
             abiFilters += listOf("arm64-v8a")
@@ -21,8 +21,12 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -51,15 +55,15 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended")
 
+    // 官方 CameraX 1.4.0（原生零依赖 依赖，直接原生 YUV_420_888 极速采色，APK 仅 ~6MB）
     val cameraxVersion = "1.4.0"
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
     implementation("androidx.camera:camera-view:$cameraxVersion")
 
-    implementation("org.opencv:opencv:4.12.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 }

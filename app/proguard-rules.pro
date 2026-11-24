@@ -1,2 +1,1 @@
 -keep class cs.min2phase.** { *; }
--keep class org.opencv.** { *; }
